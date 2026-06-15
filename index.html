@@ -178,8 +178,8 @@ footer.foot{border-top:2px solid var(--line);padding:30px 0 42px}
     <h1 class="hero-tag rv">Your Friendly Neighborhood <span class="acc">Pop Punk</span> Fix</h1>
     <div class="hero-meta rv">Taipei, Taiwan<span class="zh">來自台北的五人 pop punk 樂團</span></div>
     <div class="hero-cta rv">
-      <a href="#listen" class="btn"><span class="ic">▶</span> Listen</a>
-      <a href="#watch" class="btn ghost"><span class="ic">▷</span> Watch live</a>
+      <a href="#listen" class="btn" data-track="hero-listen"><span class="ic">▶</span> Listen</a>
+      <a href="#watch" class="btn ghost" data-track="hero-watch"><span class="ic">▷</span> Watch live</a>
     </div>
   </div>
 </header>
@@ -210,7 +210,7 @@ footer.foot{border-top:2px solid var(--line);padding:30px 0 42px}
       <figure class="cover rv" style="margin:0"><img id="cover" alt="Sulfur Creek demo" /></figure>
       <div class="rv">
         <p class="sub">Our latest work: Sink or Swim. Hit play.<span class="zh">製作中的EP曲目「Sink or Swim」，立即試聽。</span></p>
-        <a class="block-cta" style="margin-top:24px" href="https://drive.google.com/file/d/10pVGZMJBB8VwKNffpxm-TyXcUiaG3GCE/view?usp=sharing" target="_blank" rel="noreferrer">
+        <a class="block-cta" style="margin-top:24px" data-track="play-demo" href="https://drive.google.com/file/d/10pVGZMJBB8VwKNffpxm-TyXcUiaG3GCE/view?usp=sharing" target="_blank" rel="noreferrer">
           <span class="ic">▶</span>
           <span class="tx"><span class="a">Play the demo</span><span class="b">Google Drive · opens in new tab</span></span>
           <span class="arrow">↗</span>
@@ -260,7 +260,7 @@ footer.foot{border-top:2px solid var(--line);padding:30px 0 42px}
     <div class="follow-grid">
       <div class="rv">
         <p class="sub">Come hang out. New clips, shows and nonsense live on our Instagram.<span class="zh">我們的Instagram粉專</span></p>
-        <a class="block-cta" style="margin-top:24px" href="https://www.instagram.com/sulfurcreektp/" target="_blank" rel="noreferrer">
+        <a class="block-cta" style="margin-top:24px" data-track="instagram" href="https://www.instagram.com/sulfurcreektp/" target="_blank" rel="noreferrer">
           <span class="ic">◎</span>
           <span class="tx"><span class="a">Follow on Instagram</span><span class="b">@sulfurcreektp</span></span>
           <span class="arrow">↗</span>
@@ -277,7 +277,7 @@ footer.foot{border-top:2px solid var(--line);padding:30px 0 42px}
 <section class="section" id="contact">
   <div class="wrap">
     <div class="lab rv"><span class="b">Booking</span><span class="ln"></span><span class="n">04</span></div>
-    <a class="bigmail rv" href="mailto:sulfurcreektp@gmail.com">sulfurcreektp@gmail.com</a>
+    <a class="bigmail rv" data-track="booking-email" href="mailto:sulfurcreektp@gmail.com">sulfurcreektp@gmail.com</a>
 
   </div>
 </section>
@@ -311,6 +311,14 @@ document.getElementById('copy').textContent='© '+new Date().getFullYear()+' Sul
 (function(){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll('.rv').forEach(n=>io.observe(n));
+
+  /* lightweight click counter (Abacus, no account/dashboard) */
+  var SC_NS='sulfurcreek-epk';
+  function scHit(key){try{fetch('https://abacus.jasoncameron.dev/hit/'+SC_NS+'/'+key,{mode:'no-cors',keepalive:true});}catch(e){}}
+  scHit('pageview');
+  document.querySelectorAll('[data-track]').forEach(function(el){
+    el.addEventListener('click',function(){scHit(el.getAttribute('data-track'));});
+  });
 })();
 </script>
 </body>
