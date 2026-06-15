@@ -210,11 +210,10 @@ footer.foot{border-top:2px solid var(--line);padding:30px 0 42px}
       <figure class="cover rv" style="margin:0"><img id="cover" alt="Sulfur Creek demo" /></figure>
       <div class="rv">
         <p class="sub">Our latest work: Sink or Swim. Hit play.<span class="zh">製作中的EP曲目「Sink or Swim」，立即試聽。</span></p>
-        <a class="block-cta" style="margin-top:24px" data-track="play-demo" href="https://drive.google.com/file/d/10pVGZMJBB8VwKNffpxm-TyXcUiaG3GCE/view?usp=sharing" target="_blank" rel="noreferrer">
-          <span class="ic">▶</span>
-          <span class="tx"><span class="a">Play the demo</span><span class="b">Google Drive · opens in new tab</span></span>
-          <span class="arrow">↗</span>
-        </a>
+        <audio id="demoplayer" class="player" controls preload="none" style="width:100%;margin-top:24px">
+          <source src="audio/sink-or-swim.mp3" type="audio/mpeg">
+          Your browser can&rsquo;t play this &mdash; <a href="audio/sink-or-swim.mp3" download>download the track</a>.
+        </audio>
       </div>
     </div>
   </div>
@@ -319,6 +318,8 @@ document.getElementById('copy').textContent='© '+new Date().getFullYear()+' Sul
   document.querySelectorAll('[data-track]').forEach(function(el){
     el.addEventListener('click',function(){scHit(el.getAttribute('data-track'));});
   });
+  var dp=document.getElementById('demoplayer');
+  if(dp){dp.addEventListener('play',function(){scHit('play-demo');},{once:true});}
 })();
 </script>
 </body>
