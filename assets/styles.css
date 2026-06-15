@@ -43,7 +43,8 @@ a{color:inherit;text-decoration:none}
 /* ============ MASTHEAD ============ */
 .mast{position:sticky;top:0;z-index:80;background:rgba(12,11,10,.82);backdrop-filter:blur(10px);border-bottom:2px solid var(--line)}
 .mast .row{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:14px}
-.mast img{height:26px;width:auto;flex:none}
+.mast a.brand{display:inline-flex;flex:none}
+.mast img{height:34px;width:auto;flex:none}
 .mast nav{display:flex;gap:20px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .mast nav a{color:var(--mut);transition:color .2s}
 .mast nav a:hover{color:var(--accent)}
